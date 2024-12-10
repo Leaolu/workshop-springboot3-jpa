@@ -19,7 +19,7 @@ public class UserResource {
 	@Autowired
 	private UserService service;
 	@GetMapping
-	//rest controller that return /users
+	//rest controller that return to /users
 	public ResponseEntity<List<User>> findAll(){
 		List<User> list = service.findAll();
 		return ResponseEntity.ok().body(list);
