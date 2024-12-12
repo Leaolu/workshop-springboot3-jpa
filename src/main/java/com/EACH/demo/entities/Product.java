@@ -17,6 +17,8 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+//Entity with id, generated when it's added to the data base, name, description, price, imgURl, a Set of categories and a Set of orderItems
+
 @Entity
 @Table(name = "tb_product")
 public class Product implements Serializable {
@@ -30,7 +32,7 @@ public class Product implements Serializable {
 	private String description;
 	private Double price;
 	private String imgUrl;
-
+	
 	@ManyToMany
 	@JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private Set<Category> categories = new HashSet<>();
@@ -38,6 +40,8 @@ public class Product implements Serializable {
 	@OneToMany(mappedBy = "id.product")
 	private Set<OrderItem> items = new HashSet<>();
 	
+	
+	//Constructors
 	public Product() {
 	}
 
@@ -48,7 +52,9 @@ public class Product implements Serializable {
 		this.price = price;
 		this.imgUrl = imgUrl;
 	}
-
+	
+	
+	//getters and setters methods
 	public Long getId() {
 		return id;
 	}
@@ -93,6 +99,7 @@ public class Product implements Serializable {
 		return categories;
 	}
 	
+	//JsonIgnore so when printing a Order it doesn't end up in an infinite loop
 	@JsonIgnore
 	public Set<Order> getOrders(){
 		Set<Order> set = new HashSet<>();
@@ -102,6 +109,7 @@ public class Product implements Serializable {
 		return set;
 	}
 	
+	//hashCode and equals using just the id to tell Products apart
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

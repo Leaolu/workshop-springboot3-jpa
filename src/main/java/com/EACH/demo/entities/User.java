@@ -14,6 +14,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+//Entity with id, generated when it's added to the data base, name, email, phone, password and a list of orders
+
 @Entity
 @Table(name = "tb_user")
 public class User implements Serializable{
@@ -27,10 +29,13 @@ public class User implements Serializable{
 	private String phone;
 	private String password;
 	
+	//JsonIgnore so when printing an order it doens't end up in an infinite loop
 	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	private List<Order> orders = new ArrayList<>();
 	
+	
+	//Constructors
 	public User() {
 	}
 	
@@ -41,6 +46,8 @@ public class User implements Serializable{
 		this.phone = phone;
 		this.password = password;
 	}
+	
+	//getters and setters
 	public Long getId() {
 		return id;
 	}

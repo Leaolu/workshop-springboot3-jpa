@@ -20,6 +20,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
+//Entity with id , generated when it's added to the data base, moment, OrderStatus, client, payment and a Set of OrderItems
+
 @Entity
 @Table(name = "tb_order")
 public class Order implements Serializable {
@@ -45,6 +47,7 @@ public class Order implements Serializable {
 	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
 	private Payment payment;
 	
+	//method that add all the subtotals of the OrderItems inside the Set and return the sum of all of them
 	public Double getTotal() {
 		double sum = 0.0;
 		for(OrderItem oi : items) {
@@ -53,6 +56,7 @@ public class Order implements Serializable {
 		return sum;
 	}
 	
+	//Constructors
 	public Order() {
 	}
 
@@ -63,7 +67,8 @@ public class Order implements Serializable {
 		setOrderStatus(orderStatus);
 		this.client = client;
 	}
-
+	
+	//getters and setters methods
 	public Long getId() {
 		return id;
 	}
@@ -109,7 +114,9 @@ public class Order implements Serializable {
 	public void setPayment(Payment payment) {
 		this.payment = payment;
 	}
-
+	
+	
+	//hashCode and Equals using just the id to tell Orders apart
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

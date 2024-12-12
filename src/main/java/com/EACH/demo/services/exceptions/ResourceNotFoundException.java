@@ -1,7 +1,6 @@
 package com.EACH.demo.services.exceptions;
 
-//exception for when the id isn't found
-//error 404
+//personalized exception for when a resource that is searched for isn't found
 public class ResourceNotFoundException extends RuntimeException{
 	private static final long serialVersionUID = 1L;
 	

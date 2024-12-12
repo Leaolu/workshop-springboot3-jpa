@@ -10,6 +10,8 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
+//Entity with id, OrderItem primary key as id, price and quantity
+
 @Entity
 @Table(name = "tb_order_item")
 public class OrderItem implements Serializable{
@@ -21,11 +23,12 @@ public class OrderItem implements Serializable{
 	private Double price;
 	private Integer quantity;
 	
-	
+	//return the multiplication of price and quantity
 	public Double getSubTotal() {
 		return price * quantity;
 	}
 	
+	//Constructors
 	public OrderItem() {
 	}
 
@@ -36,6 +39,8 @@ public class OrderItem implements Serializable{
 		id.setProduct(product);
 	}
 	
+	//getters and setters methods
+	//JsonIgnore so the Order doesn't print an infinite loop when it's called
 	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
@@ -65,7 +70,8 @@ public class OrderItem implements Serializable{
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-
+	
+	//hashCode and equals using just the id to tell OrderItems apart
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

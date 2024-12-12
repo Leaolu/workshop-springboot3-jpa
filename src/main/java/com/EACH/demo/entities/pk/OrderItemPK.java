@@ -10,7 +10,8 @@ import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-//primary key
+//primary key of orderItem to connect a Product and an Order
+
 @Embeddable
 public class OrderItemPK implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -23,6 +24,7 @@ public class OrderItemPK implements Serializable{
 	@JoinColumn(name = "Product_id") 
 	Product product;
 	
+	//getters and setters
 	public Order getOrder() {
 		return order;
 	}
@@ -36,6 +38,7 @@ public class OrderItemPK implements Serializable{
 		this.product = product;
 	}
 	
+	//hashCode and equals using both Order and Product to tell each other apart
 	@Override
 	public int hashCode() {
 		return Objects.hash(order, product);

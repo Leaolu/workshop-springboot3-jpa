@@ -5,6 +5,7 @@ import java.time.Instant;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+//class to set what appears on the body of an error that have: timestamp, status, error, message and path
 public class StandardError implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -15,6 +16,7 @@ public class StandardError implements Serializable{
 	private String message;
 	private String path;
 	
+	//Constructors
 	public StandardError() {
 	}
 
@@ -26,7 +28,8 @@ public class StandardError implements Serializable{
 		this.message = message;
 		this.path = path;
 	}
-
+	
+	//getters and setters methods
 	public Instant getTimestamp() {
 		return timestamp;
 	}
@@ -67,7 +70,7 @@ public class StandardError implements Serializable{
 		this.path = path;
 	}
 	
-	
+	//it doesn't need hashCode or equals because it isn't needed to compare errors
 	
 	
 }

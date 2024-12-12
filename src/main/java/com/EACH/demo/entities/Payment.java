@@ -14,6 +14,8 @@ import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
+//Entity with id, generated when it's added to the data base, moment and Order
+
 @Entity
 @Table(name = "tb_payment")
 public class Payment implements Serializable{
@@ -25,12 +27,15 @@ public class Payment implements Serializable{
 	
 	private Instant moment;
 	
-	//Entity depends on order, so it doens't have it's own repository class
+	//Entity depends on Order, so it doens't have it's own repository class
+	//JsonIgnore so when trying to print an order, it doesn't end up in an infinite loop
 	@JsonIgnore
 	@OneToOne
 	@MapsId
 	private Order order;
-
+	
+	
+	//Constructors
 	public Payment() {
 	}
 	
@@ -40,6 +45,7 @@ public class Payment implements Serializable{
 		this.order = order;
 	}
 
+	//getters and setters methods
 	public Long getId() {
 		return id;
 	}
@@ -63,7 +69,8 @@ public class Payment implements Serializable{
 	public void setOrder(Order order) {
 		this.order = order;
 	}
-
+	
+	//hashCode and equals using just the id to tell payments apart
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

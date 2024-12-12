@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.EACH.demo.entities.Product;
 
+//Repository of Product to use the functions of the JpaRepository in this class
+
 //annotation @Repository isn't mandatory
 public interface ProductRepository extends JpaRepository<Product, Long>{
 

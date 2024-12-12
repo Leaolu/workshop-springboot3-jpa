@@ -14,6 +14,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
+//Entity with name, id generated when it's added to the Data base, and a Set of products
+
 @Entity
 @Table(name = "tb_category")
 public class Category implements Serializable{
@@ -28,6 +30,7 @@ public class Category implements Serializable{
 	@ManyToMany(mappedBy = "categories")
 	private Set<Product> products = new HashSet<>();
 	
+	//Constructors
 	public Category() {
 	}
 
@@ -36,6 +39,7 @@ public class Category implements Serializable{
 		this.name = name;
 	}
 
+	//getters and setters methods
 	public Long getId() {
 		return id;
 	}
@@ -56,6 +60,7 @@ public class Category implements Serializable{
 		return products;
 	}
 	
+	//hashCode and equals using just the id to tell categories apart
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
